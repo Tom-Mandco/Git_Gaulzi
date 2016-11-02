@@ -6,6 +6,8 @@ import { RouterModule }  from '@angular/router';
 import { AppComponent }  from './app.component';
 
 import { OutputComponent, SettingsComponent, SplashComponent, LeftPanelComponent } from './components/shared/index';
+import { ResultService } from './components/shared/index';
+import { MyFilterPipe } from './components/shared/index';
 
 @NgModule({
   imports:      [
@@ -30,8 +32,8 @@ import { OutputComponent, SettingsComponent, SplashComponent, LeftPanelComponent
         }
       ]) 
     ],
-  declarations: [ AppComponent, OutputComponent, SettingsComponent, LeftPanelComponent, SplashComponent ],
-  bootstrap:    [ AppComponent ],
-  providers:    [ HttpModule ]
+  declarations: [ AppComponent, OutputComponent, SettingsComponent, LeftPanelComponent, SplashComponent, MyFilterPipe ],
+  bootstrap:    [ AppComponent],
+  providers:    [ HttpModule, ResultService ]
 })
 export class AppModule { }
