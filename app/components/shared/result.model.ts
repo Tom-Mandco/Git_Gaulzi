@@ -1,4 +1,6 @@
 export class Result {
-    FileName: string;
-    LastUpdated: string;
+    constructor(
+        public FileName: string,
+        public LastUpdated: string
+    ){}
 }

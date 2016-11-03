@@ -6,6 +6,7 @@ import { RouterModule }  from '@angular/router';
 import { AppComponent }  from './app.component';
 
 import { OutputComponent, SettingsComponent, SplashComponent, LeftPanelComponent } from './components/shared/index';
+import { ConfigService } from './components/config/config.service';
 import { ResultService } from './components/shared/result.service';
 import { MyFilterPipe } from './components/shared/index';
 
@@ -34,6 +35,6 @@ import { MyFilterPipe } from './components/shared/index';
     ],
   declarations: [ AppComponent, OutputComponent, SettingsComponent, LeftPanelComponent, SplashComponent, MyFilterPipe ],
   bootstrap:    [ AppComponent],
-  providers:    [ HttpModule, ResultService ]
+  providers:    [ HttpModule, ResultService, ConfigService ]
 })
 export class AppModule { }

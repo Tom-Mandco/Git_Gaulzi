@@ -1,6 +1,6 @@
 import { Component, Injectable, Input, OnInit } from '@angular/core';
 import { Router }           from '@angular/router';
-import { Observable, Subscription }       from 'rxjs/Rx';
+import { Observable, Subscription, TimeInterval }       from 'rxjs/Rx';
 
 import { ResultService } from './shared/result.service';
 import { Result, MyFilterPipe } from './shared/index';  
@@ -13,23 +13,17 @@ import { Result, MyFilterPipe } from './shared/index';
 @Injectable()
 export class OutputComponent implements OnInit{
     ngOnInit(){
-        let timer = Observable.timer(1000, 1);
-        timer.subscribe(t => this.ticks = t);
+        let timer = Observable.timer(0, 1500);
+        timer.subscribe(t => this.results = this.getResult());
+
         this.results = this.getResult();
+        console.log('Retrieved results');
+        console.log(this.results);
     }
     title: string = 'Output';
     outputText: string = "";
     ticks = 0;
     results: any;
-//     results = [
-//     { FileName: "Test1", LastUpdated: "10:00:00 02/11/2016" },
-//     { FileName: "Test2", LastUpdated: "10:00:00 02/11/2016" },
-//     { FileName: "Test3", LastUpdated: "10:00:00 02/11/2016" },
-//     { FileName: "", LastUpdated: "10:00:00 02/11/2016" },
-//     { FileName: "Test5", LastUpdated: "10:00:00 02/11/2016" },
-//     { FileName: "6", LastUpdated: "10:00:00 02/11/2016" }
-// ];
-
 
     constructor(
         private router: Router,
