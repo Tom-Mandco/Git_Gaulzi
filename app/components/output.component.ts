@@ -3,7 +3,10 @@ import { Router }           from '@angular/router';
 import { Observable, Subscription, TimeInterval }       from 'rxjs/Rx';
 
 import { ResultService } from './shared/result.service';
+import { WatchService } from './shared/watch.service';
+import { MonitorService } from './shared/monitor.service';
 import { Result, MyFilterPipe } from './shared/index';  
+import { Watch } from './shared/index';
 
 @Component({
     selector: 'output',
@@ -12,27 +15,30 @@ import { Result, MyFilterPipe } from './shared/index';
 
 @Injectable()
 export class OutputComponent implements OnInit{
-    ngOnInit(){
-        let timer = Observable.timer(0, 1500);
-        timer.subscribe(t => this.results = this.getResult());
 
-        this.results = this.getResult();
-        console.log('Retrieved results');
-        console.log(this.results);
-    }
     title: string = 'Output';
     outputText: string = "";
     ticks = 0;
-    results: any;
+    private watches: any;
+    private results: string[]=[];
 
-    constructor(
-        private router: Router,
-        private resultService: ResultService
-        ){
+    constructor(private monitor: MonitorService, private watchService: WatchService) { 
+        this.results = this.results;
+        this.watches = this.watches;
+
+        this.monitor.GetInstanceStatus().subscribe((result) => {
+            this.results.push(result);
+        });
     }
 
-    getResult(): void{
-        this.resultService.getResult().then(results => this.results = results);
+    ngOnInit(){
+        this.watches = this.getWatches();
+        
     }
+
+    getWatches(): void{
+        this.watchService.getWatches().then(watches => this.watches = watches);
+    }
+
 
 }

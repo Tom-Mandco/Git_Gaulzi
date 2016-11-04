@@ -8,6 +8,8 @@ import { AppComponent }  from './app.component';
 import { OutputComponent, SettingsComponent, SplashComponent, LeftPanelComponent } from './components/shared/index';
 import { ConfigService } from './components/config/config.service';
 import { ResultService } from './components/shared/result.service';
+import { WatchService } from './components/shared/watch.service';
+import { MonitorService } from './components/shared/monitor.service';
 import { MyFilterPipe } from './components/shared/index';
 
 @NgModule({
@@ -35,6 +37,6 @@ import { MyFilterPipe } from './components/shared/index';
     ],
   declarations: [ AppComponent, OutputComponent, SettingsComponent, LeftPanelComponent, SplashComponent, MyFilterPipe ],
   bootstrap:    [ AppComponent],
-  providers:    [ HttpModule, ResultService, ConfigService ]
+  providers:    [ HttpModule, ResultService, ConfigService, MonitorService, WatchService ]
 })
 export class AppModule { }
