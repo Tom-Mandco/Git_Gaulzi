@@ -3,10 +3,10 @@
 jspm_packages
 link-checker-results.txt
 **/*npm-debug.log.*
-*.js
-*.js.map
-e2e/**/*.js
-e2e/**/*.js.map
+app/*.js
+app/*.js.map
+app/e2e/**/*.js
+app/e2e/**/*.js.map
 _test-output
 _temp
 
