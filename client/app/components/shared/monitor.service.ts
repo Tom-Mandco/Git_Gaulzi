@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
+import { Result }     from './index';
 
 @Injectable()
 export class MonitorService {
@@ -7,7 +8,7 @@ export class MonitorService {
 
 
     public GetInstanceStatus(): Observable<any>{
-      this.websocket = new WebSocket("ws://127.0.0.1:8081"); //dummy echo websocket service
+      this.websocket = new WebSocket("ws://127.0.0.1:8081");
       this.websocket.onopen =  (evt) => {
           this.websocket.send("start service");
           this.websocket.send("meaningless message");

@@ -1,74 +1,23 @@
-<div class="panel-group" id="accordion">
-  <div class="panel panel-default" *ngFor='let watch of watches'>
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" data-target="collapse{{watch.WatchName}}">
-            {{watch.WatchName}}
-        </a>
-      </h4>
-    </div>
-    <div attr.id="collapse{{watch.WatchName}}" class="panel-collapse collapse in">
-      <div class="panel-body">
-        <table class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <th class="col-lg-2">File Name</th>
-                    <th class="col-lg-10">Updated on: </th>
-                </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor='let result of results'>
-                <td>{{result}}</td>
-                <td>The datetime stamp should be here, mate.</td>
+<div class="panel panel-default" *ngFor='let watch of watches'>
+  <div class="panel-heading">{{watch.WatchName}} <span class="badge">{{results.length}}</span></div>
+    <div class="panel-body">
+      <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th class="glyphicon glyphicon-flash"></th>
+                <th class="col-lg-9 ">File Name</th>
+                <th class="col-lg-3">Time Stamp: </th>
             </tr>
-            </tbody>
-        </table>
-      </div>
+        </thead>
+        <tbody>
+        <tr *ngFor='let result of results'>
+            <td *ngIf="result.EventType == 'add' "class="glyphicon glyphicon-plus"></td>
+            <td *ngIf="result.EventType == 'del' "class="glyphicon glyphicon-remove"></td>
+            <td *ngIf="result.EventType == 'mod' "class="glyphicon glyphicon-refresh"></td>
+            <td>{{result.FileName}}</td>
+            <td>{{result.TimeStamp}}</td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
-
-
-  <div class="panel-group" id="accordion">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" data-target="#collapse1">
-        Collapsible Group 1</a>
-      </h4>
-    </div>
-    <div id="collapse1" class="panel-collapse collapse in">
-      <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat.</div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" data-target="#collapse2">
-        Collapsible Group 2</a>
-      </h4>
-    </div>
-    <div id="collapse2" class="panel-collapse collapse">
-      <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat.</div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" data-target="#collapse3">
-        Collapsible Group 3</a>
-      </h4>
-    </div>
-    <div id="collapse3" class="panel-collapse collapse">
-      <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat.</div>
-    </div>
-  </div>
-</div>

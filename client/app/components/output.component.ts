@@ -19,15 +19,16 @@ export class OutputComponent implements OnInit{
     title: string = 'Output';
     outputText: string = "";
     ticks = 0;
+    parsedResult: Result;
     private watches: any;
-    private results: string[]=[];
+    private results: Result[]=[];
 
     constructor(private monitor: MonitorService, private watchService: WatchService) { 
         this.results = this.results;
         this.watches = this.watches;
 
         this.monitor.GetInstanceStatus().subscribe((result) => {
-            this.results.push(result);
+            this.saveResult(result);
         });
     }
 
@@ -38,6 +39,12 @@ export class OutputComponent implements OnInit{
 
     getWatches(): void{
         this.watchService.getWatches().then(watches => this.watches = watches);
+    }
+
+    saveResult(rawString: any): void{
+        console.log(rawString);
+        var m1 = JSON.parse(rawString);
+        this.results.push(m1);
     }
 
 
