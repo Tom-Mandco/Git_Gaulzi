@@ -3,12 +3,14 @@
 jspm_packages
 link-checker-results.txt
 **/*npm-debug.log.*
-app/*.js
-app/*.js.map
-app/e2e/**/*.js
-app/e2e/**/*.js.map
+client/**/*.js
+client/**/*.js.map
+client/**/e2e/**/*.js
+client/**/e2e/**/*.js.map
+server/TestWatch/**.*
 _test-output
 _temp
+
 
 !karma*.js
 !protractor*.js
