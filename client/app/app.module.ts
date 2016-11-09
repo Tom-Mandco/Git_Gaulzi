@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule }    from '@angular/http';
 import { RouterModule }  from '@angular/router';
 
+import { AccordionModule, SharedModule }  from 'primeng/primeng';
+
 import { AppComponent }  from './app.component';
 
 import { OutputComponent, SettingsComponent, SplashComponent, LeftPanelComponent } from './components/shared/index';
@@ -15,6 +17,8 @@ import { MyFilterPipe } from './components/shared/index';
 @NgModule({
   imports:      [
     BrowserModule,
+    AccordionModule,
+    SharedModule,
     HttpModule,
     RouterModule.forRoot([
         {

@@ -8,6 +8,9 @@ import { MonitorService } from './shared/monitor.service';
 import { Result, MyFilterPipe } from './shared/index';  
 import { Watch } from './shared/index';
 
+import { AccordionModule }    from 'primeng/components/accordion/accordion';
+import { SharedModule } from 'primeng/primeng';
+
 @Component({
     selector: 'output',
     templateUrl: 'app/components/output.component.html'

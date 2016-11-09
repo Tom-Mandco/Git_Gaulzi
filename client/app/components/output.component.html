@@ -1,23 +1,32 @@
-<div class="panel panel-default" *ngFor='let watch of watches'>
-  <div class="panel-heading">{{watch.WatchName}} <span class="badge">{{results.length}}</span></div>
-    <div class="panel-body">
-      <table class="table table-striped table-hover">
+<p-accordion [multiple]="true">
+    <p-accordionTab *ngFor='let watch of watches' [selected]="true"> 
+      <header>
+        {{watch.WatchName}} <span class="label label-default label-as-badge">{{results.length}}</span>
+      </header>
+             <table class="table table-striped table-hover">
         <thead>
-            <tr>
-                <th class="glyphicon glyphicon-flash"></th>
-                <th class="col-lg-9 ">File Name</th>
-                <th class="col-lg-3">Time Stamp: </th>
-            </tr>
+          <tr>
+            <th class="glyphicon glyphicon-flash"></th>
+            <th class="col-lg-6">File Name</th>
+            <th class="col-lg-6">Time Stamp: </th>
+          </tr>
         </thead>
         <tbody>
-        <tr *ngFor='let result of results'>
+          <tr *ngFor='let result of results' >
+          
             <td *ngIf="result.EventType == 'add' "class="glyphicon glyphicon-plus"></td>
+            <td *ngIf="result.EventType == 'add' "class="alert alert-success">{{result.FileName}}</td>
+            <td *ngIf="result.EventType == 'add' "class="alert alert-success">{{result.TimeStamp}}</td>
+
             <td *ngIf="result.EventType == 'del' "class="glyphicon glyphicon-remove"></td>
+            <td *ngIf="result.EventType == 'del' "class="alert alert-danger">{{result.FileName}}</td>
+            <td *ngIf="result.EventType == 'del' "class="alert alert-danger">{{result.TimeStamp}}</td>
+
             <td *ngIf="result.EventType == 'mod' "class="glyphicon glyphicon-refresh"></td>
-            <td>{{result.FileName}}</td>
-            <td>{{result.TimeStamp}}</td>
-        </tr>
+            <td *ngIf="result.EventType == 'mod' "class="alert alert-info">{{result.FileName}}</td>
+            <td *ngIf="result.EventType == 'mod' "class="alert alert-info">{{result.TimeStamp}}</td>
+          </tr>
         </tbody>
       </table>
-    </div>
-  </div>
+    </p-accordionTab>
+</p-accordion>
