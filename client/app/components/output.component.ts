@@ -22,6 +22,7 @@ export class OutputComponent implements OnInit{
     title: string = 'Output';
     outputText: string = "";
     ticks = 0;
+    message: string = "success";
     parsedResult: Result;
     private watches: any;
     private results: Result[]=[];
@@ -50,5 +51,7 @@ export class OutputComponent implements OnInit{
         this.results.push(m1);
     }
 
-
+    sendMessage(){
+        this.monitor.sendWebSocketMessage(this.message);
+    }
 }

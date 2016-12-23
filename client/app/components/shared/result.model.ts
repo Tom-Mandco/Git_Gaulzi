@@ -1,8 +1,9 @@
 export class Result {
     constructor(
-        public FileName: string,
-        public TimeStamp: string,
-        public EventType: string,
-        public WatchName: string
+        public Author: string,
+        public Email: string,
+        public Date: string,
+        public Message: string,
+        public Sha: string
     ){}
 }

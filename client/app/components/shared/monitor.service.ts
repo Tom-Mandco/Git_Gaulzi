@@ -12,7 +12,7 @@ export class MonitorService {
       this.websocket.onopen =  (evt) => {
           this.websocket.send("start service");
           this.websocket.send("meaningless message");
-      };
+      };    
 
       return Observable.create(observer=>{
           this.websocket.onmessage = (evt) => { 
@@ -22,5 +22,9 @@ export class MonitorService {
       .map(res=>res.data)
       .share();
     }
+
+    public sendWebSocketMessage(message: string){
+        this.websocket.send(message);
+    } 
 
 }
