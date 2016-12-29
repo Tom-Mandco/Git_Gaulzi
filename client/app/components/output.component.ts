@@ -38,7 +38,6 @@ export class OutputComponent implements OnInit{
 
     ngOnInit(){
         this.watches = this.getWatches();
-        
     }
 
     getWatches(): void{
@@ -52,6 +51,7 @@ export class OutputComponent implements OnInit{
     }
 
     sendMessage(){
+        this.results = [];
         this.monitor.sendWebSocketMessage(this.message);
     }
 }
