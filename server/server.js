@@ -2,8 +2,10 @@ var log = console.log.bind(console);
 var dateFormat = require('dateformat');
 var ws = require("nodejs-websocket")
 var nodegit = require("nodegit");
+var simpleGit = require('simple-git')("./Example_Repo/git_reader/");
+var arrayOfObjs = [];
 
-var repoPath = "./Example_Repo/nodegit";
+var repoPath = "./Example_Repo/git_reader/";
 
 var server = ws.createServer(function (conn) {
     console.log("New connection")
@@ -14,10 +16,13 @@ var server = ws.createServer(function (conn) {
 		{
 			console.log("cmd executed.")
 		}
+		if(str === "getAllMasterCommits")
+		{
+			ReturnAllCommitsOnMaster();
+		}
 		if(str === "success")
 		{
-			console.log("received.")
-			runCase();
+			runTest();
 		}
 		else
 		{
@@ -35,6 +40,29 @@ function broadcast(server, msg) {
     })
 }
 
+function runTest(){
+	simpleGit.branch(function(err, data) {
+            if (!err) {
+                //console.log('Remote url for repository at ' + __dirname + ':');
+                console.log(JSON.stringify(data));
+            }
+        });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var getMostRecentCommit = function(repository) {
   return repository.getBranchCommit("master");
 };
@@ -43,7 +71,7 @@ var getCommitMessage = function(commit) {
   return commit.message();
 };
 
-function runCase() {
+function ReturnAllCommitsOnMaster() {
 	nodegit.Repository.open(repoPath)
 	.then(function(repo) {
 		return repo.getMasterCommit();
@@ -55,13 +83,7 @@ function runCase() {
 		// History emits "commit" event for each commit in the branch's history
 		history.on("commit", function(commit) {
 			var commitObject = generateNewCommitObject_ToJSON(commit.author().name(), commit.author().email(), commit.date(), commit.message(), commit.sha());
-			
-			broadcast.log(commitObject);
-		// console.log("commit " + commit.sha());
-		// console.log("Author:", commit.author().name() +
-		// 	" <" + commit.author().email() + ">");
-		// console.log("Date:", commit.date());
-		// console.log("\n    " + commit.message());
+			broadcast(server, commitObject);
 		});
 
 		// Don't forget to call `start()`!
@@ -72,14 +94,14 @@ function runCase() {
 
 function generateNewCommitObject_ToJSON(commitAuthor, commitEmail, commitDate, commitMessage, commitSha){
 	var commitDetail = {
-		author: commitAuthor,
-		email: commitEmail,
-		date: dateFormat(commitDate,"(dd-mm-yyyy) HH:MM:ss"),
-		message: commitMessage.replace("\n\n", ""),
-		sha: commitSha
+		Author: commitAuthor,
+		Email: commitEmail,
+		Date: dateFormat(commitDate,"(dd-mm-yyyy) HH:MM:ss"),
+		Message: commitMessage.replace("\n\n", ""),
+		Sha: commitSha
 	};
 
-	console.log("Commit added: " + commitDetail.message);
+	console.log("Commit added: " + commitDetail.Message);
 
 	return JSON.stringify(commitDetail); 
 }
